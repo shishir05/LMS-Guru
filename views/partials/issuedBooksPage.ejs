@@ -1,0 +1,88 @@
+<%- include header.ejs %>
+<div class="wrapper">
+
+
+    <div class="col-md-12" ng-controller="issuedBookCtrl">
+
+
+        <div class="container-body" style="padding:20px;margin:20px">
+
+            <div class="row">
+                <div class="col-md-2 text-center">
+                    Categorize Book By
+                </div>
+                <div class="col-md-2 text-center">
+                    <input type="radio" name="categorize"  ng-model="categorize" value="genre">Genre
+                </div>
+                <div class="col-md-2 text-center">
+                    <input type="radio" name="categorize"  ng-model="categorize" value="author"> Author
+                </div>
+
+
+            </div>
+
+            <table class="table table-striped" ng-init="sortBy='title';categorize='genre'">
+                <tbody ng-repeat="(key, value) in issuedBookList|groupBy:categorize">
+                <td>
+                    {{categorize|uppercase}}: {{ key|uppercase }}
+                </td>
+                <td>
+                    <table class="table ">
+                        <colgroup>
+                            <col style="width: 10%;">
+                            <col style="width: 20%;">
+                            <col style="width: 10%;">
+                            <col style="width: 50%;">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>S No.</th>
+                            <th ng-click="sortBy='title'">Title</th>
+                            <th ng-click="sortBy='author'">Author</th>
+                            <th ng-click="sortBy='author'">Issue</th>
+
+                        </tr>
+                        </thead>
+                        <tr ng-repeat="book in value">
+
+                            <td>{{$index+1}}</td>
+                            <td> {{book.title}}</td>
+                            <td>{{book.author}}</td>
+
+                            <td>
+                                <table class="table ">
+                                    <thead>
+                                    <tr>
+                                        <th>S No.</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Remark</th>
+                                    </tr>
+                                    </thead>
+                                    <tr ng-repeat="user in book.users" ng-class={'danger':user.return<user.issueDate}>
+
+                                        <td>{{$index+1}}</td>
+                                        <td> {{user.name}}</td>
+                                        <td>{{user.email}}</td>
+                                        <td>{{user.phone}}</td>
+                                        <td>{{user.issueDate|date:'dd/MM/yy'}}-
+                                            {{user.return|date:'dd/MM/yy'}}</td>
+
+                                    </tr>
+                                </table>
+                            </td>
+
+                        </tr>
+                    </table>
+                </td>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- End Content -->
+
+
+</div><!--/End Wrapepr-->

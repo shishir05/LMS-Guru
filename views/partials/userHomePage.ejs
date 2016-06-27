@@ -1,0 +1,136 @@
+<%- include header.ejs %>
+<div class="wrapper">
+
+
+    <div class="col-md-12" ng-controller="userHomeCtrl">
+
+        <div class="container-body" style="padding:20px;margin:20px">
+
+            <div class="row">
+                <div class="col-md-2 text-center">
+                    Categorize Book By
+                </div>
+                <div class="col-md-2 text-center">
+                    <input type="radio" name="categorize"  ng-model="categorize" value="author"> Author
+                </div>
+                <div class="col-md-2 text-center">
+                    <input type="radio" name="categorize"  ng-model="categorize" value="genre"> Genre
+                </div>
+                <div class="col-md-offset-2 col-md-4 text-center">
+                    <div class="row">
+
+                        <div class="col-md-6 text-center">
+                            Search Book
+                        </div>
+
+                        <div class="col-md-6 text-center">
+                    <label class="item item-input">
+
+                        <input type="search" class="form-control" placeholder="Search an item" ng-change="search();clear(data.search);" ng-model="data.search">
+                    </label>
+                            </div>
+
+                            <!--<li class="list-group-item" ng-repeat="product in data.searchProductsArray"-->
+                                <!--ng-click="selectThis(product)">{{product}}-->
+                            <!--</li>-->
+                        </div>
+                </div>
+
+                <div class="col-md-offset-8 col-md-4 text-center" style="z-index:10">
+
+                        <li class="list-group-item" ng-repeat="product in data.searchProductsArray"
+                            ng-click="selectThis(product)">{{product}}
+                        </li>
+                </div>
+            </div>
+
+
+            <div class="row" ng-show="searchThisProduct.length!=0">
+
+                <div class="col-md-offset-8 col-md-2" ng-click="cancelSearch()">
+                Search results for {{searchThisProduct}}
+                    </div>
+                <div class="col-md-2 btn btn-primary" ng-click="cancelSearch()">
+                    Cancel search
+                </div>
+            </div>
+
+            <table class="table table-striped" ng-init="sortBy='title';categorize='genre'">
+                <tbody ng-repeat="(key, value) in AllBooks | groupBy: categorize">
+                <td>
+                    {{categorize|uppercase}}: {{ key|uppercase }}
+                </td>
+                <td>
+                    <table class="table ">
+                        <colgroup>
+                            <col style="width: 10%;">
+                            <col style="width: 30%;">
+                            <col style="width: 10%;">
+                            <col style="width: 10%;">
+                            <col style="width: 10%;">
+                            <col style="width: 10%;">
+                            <col style="width: 10%;">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>S No.</th>
+                            <th ng-click="sortBy='title'">Title</th>
+                            <th ng-click="sortBy='author'">Author</th>
+                            <th ng-click="sortBy='category'">Category</th>
+                            <th>Status</th>
+                            <th>Issue/Return</th>
+                            <th>Remark</th>
+                        </tr>
+                        </thead>
+                        <tr ng-repeat="book in value|orderBy:sortBy|searchFilter:searchThisProduct">
+
+                            <td>{{$index+1}}</td>
+                            <td> {{book.title}}</td>
+                            <td>{{book.author}}</td>
+                            <td>{{book.category}}</td>
+                            <td ng-if="book.stock>=5">Available</td>
+                            <td ng-if="book.stock<5&&book.stock>0" class="danger">Only {{book.stock}} Left</td>
+                            <td ng-if="book.stock==0" class="danger">Out Of Stock</td>
+                            <td ng-if="book.stock>0 && !book.isIssued ">
+                                <span class="btn btn-primary" ng-click="issueBook(book)">
+                                    Issue Book
+                                </span>
+                            </td>
+
+                            <td ng-if="book.stock>0 && book.isIssued ">
+                                <span class="btn btn-primary" ng-click="issueBook(book)">
+                                    Return Book
+                                </span>
+                            </td>
+
+                            <td ng-if="book.issueDate<book.return">
+                                    Issue Date :{{book.issueDate|date:'dd/MM/yy'}}
+
+                                        return Date :{{book.return|date:'dd/MM/yy'}}
+
+                            </td>
+
+                            <td ng-if="book.issueDate>book.return">
+                                        Overdue
+                                        return Date :{{book.return|date:'dd/MM/yy'}}
+
+                            </td>
+
+                        </tr>
+                    </table>
+                </td>
+
+
+                </tbody>
+            </table>
+
+
+
+        </div>
+
+
+    </div>
+    <!-- End Content -->
+
+
+</div><!--/End Wrapepr-->

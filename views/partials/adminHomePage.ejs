@@ -1,0 +1,86 @@
+<%- include header.ejs %>
+<div class="wrapper">
+
+
+    <div class="col-md-12" ng-controller="adminHomeCtrl">
+
+        <div class="row">
+            <div class="col-md-2 text-center">
+                Categorize Book By
+            </div>
+            <div class="col-md-2 text-center">
+                <input type="radio" name="categorize"  ng-model="categorize" value="author"> Author
+            </div>
+            <div class="col-md-2 text-center">
+                <input type="radio" name="categorize"  ng-model="categorize" value="genre"> Genre
+            </div>
+
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-2 text-center">
+                Arrange Books By
+            </div>
+            <div class="col-md-2 text-center">
+                <input type="radio" name="stock"  ng-model="stock" value="all"> All stock
+            </div>
+            <div class="col-md-2 text-center">
+                <input type="radio" name="stock"  ng-model="stock" value="out"> Out of stock
+            </div>
+
+            <div class="col-md-2 text-center">
+                <input type="radio" name="stock"  ng-model="stock" value="in"> In stock
+            </div>
+
+
+        </div>
+
+        <div class="container-body" style="padding:20px;margin:20px">
+
+            <table class="table table-striped" ng-init="sortBy='title';categorize='genre';stock='all'">
+                <tbody ng-repeat="(key, value) in AllBooks | groupBy: categorize">
+                <td>
+                    {{categorize|uppercase}}: {{ key|uppercase }}
+                </td>
+                <td>
+                    <table class="table ">
+                        <colgroup>
+                            <col style="width: 10%;">
+                            <col style="width: 40%;">
+                            <col style="width: 20%;">
+                            <col style="width: 20%;">
+                            <col style="width: 10%;">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>S No.</th>
+                            <th ng-click="sortBy='title'">Title</th>
+                            <th ng-click="sortBy='author'">Author</th>
+                            <th ng-click="sortBy='category'">Category</th>
+                            <th>Stock</th>
+                        </tr>
+                        </thead>
+                        <tr ng-repeat="book in value|orderBy:sortBy|filterStock:stock">
+
+                            <td>{{$index+1}}</td>
+                            <td> {{book.title}}</td>
+                            <td>{{book.author}}</td>
+                            <td>{{book.category}}</td>
+                            <td ng-if="book.stock!=0">{{book.stock}}</td>
+                            <td ng-if="book.stock==0" class="danger">Out Of Stock</td>
+
+                        </tr>
+                    </table>
+                </td>
+
+
+                </tbody>
+            </table>
+            </div>
+    </div>
+    <!-- End Content -->
+
+
+</div><!--/End Wrapepr-->

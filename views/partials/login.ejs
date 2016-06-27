@@ -1,0 +1,77 @@
+<%- include header.ejs %>
+<div class="wrapper">
+
+
+    <div class="col-md-12" ng-controller="loginCtrl">
+
+        <div class="container-body" style="padding:20px;margin:20px">
+
+
+            <form name="loginForm" novalidate ng-submit="!loginForm.$valid||login()">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h3 align="center">Login</h3>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <label class="item item-input">
+                            <input type="email" class="form-control" placeholder="Email" name="email" ng-model="user.email" ng-required="true"
+                                   ng-blur="checkEmail=true" >
+                        </label>
+
+                        <div class="form-group has-error has-feedback" ng-show="loginForm.email.$error.required && submitted==true">
+                            <label class="control-label">Email is required</label>
+                        </div>
+                        <div class="form-group has-error has-feedback" ng-show="loginForm.email.$invalid && checkEmail==true">
+                            <label class="control-label">Invalid Email</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <label class="item item-input">
+                            <input type="password" class="form-control" name="password" placeholder="password" ng-model="user.password" ng-required="true"
+                                   ng-minlength="6">
+                        </label>
+
+                        <div class="form-group has-error has-feedback" ng-show="loginForm.password.$error.required && submitted==true">
+                            <label class="control-label">Password is required</label>
+                        </div>
+                        <div class="form-group has-error has-feedback">
+                            <label class="control-label" ng-show="loginForm.password.$error.minlength">Password should contain atleast 6 characters</label>
+
+                            <!--<p ng-show="passwordAltest2Number">Password should contain atleast 2 numbers</p>-->
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+
+                        <button  class="btn btn-primary" ng-click="submitted=true">Sign In</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+
+
+                        <div class="form-group has-error has-feedback" ng-if="loginError">
+                            <label class="control-label">Invalid Email/Password</label>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+    <!-- End Content -->
+
+
+</div><!--/End Wrapepr-->

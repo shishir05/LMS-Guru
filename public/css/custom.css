@@ -1,0 +1,141 @@
+
+
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    background-color: #f4f4f4;
+
+}
+.fullWidth {
+
+    width: 100%;
+    height: 100%;
+}
+
+.bootCardPadding
+{
+    margin:10px
+}
+
+.zeroPadding{
+    padding: 0!important;
+}
+
+.companyName
+{
+    font-size: 25px;
+    font-weight: bold;
+    color:grey;
+    text-align: center;
+
+}
+
+.perkcontentDescription
+{
+    text-align: left;
+    font-size: 16px;
+    color:grey;
+    font-weight: bold;
+}
+
+
+.termsAndConditionPerk
+{
+
+    text-align: left;
+    padding-left:2%;
+    font-size: 16px;
+    color:grey;
+    font-weight: bold;
+
+}
+/*--------------------------------------------------------------------------------------------------------------------*/
+
+
+.heading20
+{
+    font-size: 20px;
+    font-weight: bold;
+    margin:5px;
+}
+
+
+.text16
+{
+    font-size: 16px;
+    margin-left:10px;
+}
+
+.text16Bold
+{
+
+    font-size: 16px;
+    margin-left:10px;
+    font-weight:bold;
+}
+
+
+.text12
+{
+
+    font-size: 12px;
+
+}
+.padding10
+{
+    padding:10px;
+}
+
+
+.minHeight80
+{
+    min-height: 80px;
+    text-align: center;
+    padding-top:20px;
+    font-size:20px;
+    font-weight: bold;
+    color:red;
+
+
+}
+
+
+.aligncenter{
+
+    text-align: center;
+}
+
+.redColor{
+
+    color:red;
+}
+
+.imageDimension{
+    min-height: 225px;
+    min-width: 225px;
+
+    max-height: 225px;
+    max-width: 225px;
+}
+
+
+.test {
+    border:1px solid #021a40;
+}
+
+.margin-top-20{
+     margin-top:20px
+ }
+.margin-top-100{
+    margin-top:100px;
+}
+.caption-pane{
+    background: #DED;
+}
+.pointer{
+    cursor: pointer;
+}
+
+.margin-top-10{
+    margin-top:10px;
+}
