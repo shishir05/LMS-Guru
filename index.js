@@ -2,7 +2,6 @@
  * Module dependencies
  */
 
-var multer = require('multer');
 var done = false;
 var express = require('express'),
     bodyParser = require('body-parser'),
